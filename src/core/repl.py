@@ -22,7 +22,7 @@ class RRShell(cmd.Cmd):
 
     @property
     def intro(self):
-        m = reduce(lambda m, l: max(m, len(l)), 0)
+        m = reduce(lambda m, l: max(m, len(l)), self._intro, 0)
         lines = [
             "╔" + (m + 2) * "═" + "╗",
             *[f"║ {line} ║" for line in self._intro],
