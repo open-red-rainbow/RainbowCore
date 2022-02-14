@@ -130,4 +130,4 @@ dmypy.json
 
 # editor settings
 .vscode/
-!*/core/lib/
+!/src/lib/
