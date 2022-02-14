@@ -1,8 +1,8 @@
-import sys
 from .instance import VERSION
 
 from yachalk import chalk
-import cmd
+from functools import reduce
+import sys, cmd
 
 
 def v_str(version):
@@ -22,12 +22,13 @@ class RRShell(cmd.Cmd):
 
     @property
     def intro(self):
-        result = ""
-        m = 0
-        for line in self._intro:
-            m = max(len(line), m)
-            result += "║ " + line + " ║\n"
-        return "╔" + (m + 2) * "═" + "╗\n" + result + "╚" + (m + 2) * "═" + "╝"
+        m = reduce(lambda m, l: max(m, len(l)), 0)
+        lines = [
+            "╔" + (m + 2) * "═" + "╗",
+            *[f"║ {line} ║" for line in self._intro],
+            "╚" + (m + 2) * "═" + "╝",
+        ]
+        return "\n".join(lines)
 
     @property
     def prompt(self):
