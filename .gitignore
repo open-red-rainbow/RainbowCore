@@ -131,3 +131,5 @@ dmypy.json
 # editor settings
 .vscode/
 !/src/lib/
+
+**/token.txt
